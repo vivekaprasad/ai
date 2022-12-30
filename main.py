@@ -12,7 +12,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQue
 import os
 import time
 import pytz
-from database.sql import add_user, query_msg, full_userbase
+
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 
