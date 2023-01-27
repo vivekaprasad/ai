@@ -963,7 +963,7 @@ EC0005_BUTTONS=[
 EC0006_TEXT=''
 
 
-@bot.on_message(filters.regex('start') & filters.private) #start
+@bot.on_message(filters.regex('start')) #start
 def start(bot, message):
     text = START_MESSAGE
     reply_markup = InlineKeyboardMarkup(START_BUTTONS)
@@ -1047,30 +1047,7 @@ async def callback_query(client: Client, query: CallbackQuery):
         except MessageNotModified:
             pass
 
-    elif query.data=="update":
-            global stoptimer
-            
-            dt1 = datetime(2023,1,23,00,00,00,000000,tzinfo=ZoneInfo('Asia/Kolkata'))
-            dt2 = datetime.now(pytz.timezone('Asia/Kolkata'))
-            dt3 = int((dt1 - dt2).total_seconds())
-            user_input_time = dt3
-            user_input_event = str("🔥🔥උසස් පෙළ විභාගයට තව🔥🔥")
-            if user_input_time>0:
-                if user_input_time>0 and user_input_time!=0:
-                    d=user_input_time//(3600*24)
-                    h=user_input_time%(3600*24)//3600
-                    m=user_input_time%3600//60
-                    s=user_input_time%60
-                    Countdown_TeLe_TiPs='{}\n\n⏳ **දින** {:02d}**යි**  **පැය** {:02d}**යි** **මිනිත්තු** {:02d}**යි**  **තත්පර** {:02d}**ක** කාලයක් තිබෙයි.\n\n@PrasadAssistantrobot'.format(user_input_event, d, h, m, s)
-                    update_text=str(Countdown_TeLe_TiPs)
-                    reply_markup = InlineKeyboardMarkup(update_buttons)
-                    try:
-                        await query.edit_message_text(
-                            update_text,
-                            reply_markup=reply_markup
-                        )
-                    except MessageNotModified:
-                        pass
+   
 
     
 
@@ -1593,14 +1570,6 @@ def inline_query(client, inline_query):
                     "⭕️GROUP MENU⭕️ "
                 ),
                 reply_markup=InlineKeyboardMarkup(START_BUTTONS)
-            ),
-            InlineQueryResultArticle(
-                title="Count Down",
-                description="🔥උසස් පෙළ විභාගයට තව🔥",
-                input_message_content=InputTextMessageContent(
-                    "🔥උසස් පෙළ විභාගයට තව🔥"
-                ),
-                reply_markup=InlineKeyboardMarkup(update_buttons)
             ),
             
         ],
