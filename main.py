@@ -93,7 +93,6 @@ IT010_TEXT='2020 ප්‍රශ්න පත්‍ර සාකච්ඡාව\
 
 START_BUTTONS=[
     [InlineKeyboardButton('📛ENTER SUBJECT MENU📛',callback_data='A0001')],
-    [InlineKeyboardButton('A/l COUNT DOWN TIMER',callback_data='update')],
     [InlineKeyboardButton('⚜️CONTACT OWNER',url='https://t.me/PUBUDUPRASAD')],
     [InlineKeyboardButton('❌CLOSE❌',callback_data='CLOSE')],
 ]
@@ -963,7 +962,7 @@ EC0005_BUTTONS=[
 EC0006_TEXT=''
 
 
-@bot.on_message(filters.regex('start')) #start
+@bot.on_message(filters.regex('menu','start')) #start
 def start(bot, message):
     text = START_MESSAGE
     reply_markup = InlineKeyboardMarkup(START_BUTTONS)
