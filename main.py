@@ -962,7 +962,7 @@ EC0005_BUTTONS=[
 EC0006_TEXT=''
 
 
-@bot.on_message(filters.regex('menu','start')) #start
+@bot.on_message(filters.regex('menu')) #start
 def start(bot, message):
     text = START_MESSAGE
     reply_markup = InlineKeyboardMarkup(START_BUTTONS)
@@ -1027,12 +1027,6 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
 REPLY_ERROR = "error"                
 
 
-time_buttons=[
-    [InlineKeyboardButton('A/l Count down timer',callback_data='update')],
-]
-update_buttons=[
-    [InlineKeyboardButton('☘️ UPDATE TIME ☘️',callback_data="update")],
-]    
 
 @bot.on_callback_query()
 async def callback_query(client: Client, query: CallbackQuery):
