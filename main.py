@@ -24,7 +24,7 @@ bot = Client(
     'all subject bot',
     api_id=7009965,
     api_hash="06651b174c4f0591deb0ed1e5663c996",
-    bot_token="5538996149:AAFE3XRqcFp9p6bdgGE8Ga2zMcF4AgioCTk"
+    bot_token="5660465167:AAFlpqT4hAXVgKPCvkpNlHYSH4OonQpFd9M"
     
 )
 
