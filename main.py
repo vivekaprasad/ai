@@ -971,6 +971,15 @@ def start(bot, message):
         reply_markup=reply_markup,
         disable_web_page_preview=True
     )
+@bot.on_message(filters.regex('start')) #start
+def start(bot, message):
+    text = START_MESSAGE
+    reply_markup = InlineKeyboardMarkup(START_BUTTONS)
+    message.reply(
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True
+    )
 WAIT_MSG = """"<b>Processing ...</b>"""
 ADMINS=f"1256202333"
 @bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
