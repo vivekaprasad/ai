@@ -24,7 +24,7 @@ bot = Client(
     'all subject bot',
     api_id=7009965,
     api_hash="06651b174c4f0591deb0ed1e5663c996",
-    bot_token="5637036984:AAGBywLL6Yzzbzetel3lpXcS7RvMDyxUZgU"
+    bot_token="5916440954:AAH6E2XOKbOoy2y9szL3OAQqfv2V1mipMIQ"
     
 )
 
@@ -961,7 +961,7 @@ EC0005_BUTTONS=[
 EC0006_TEXT=''
 
 
-@bot.on_message(filters.regex('menu')) #start
+@bot.on_message(filters.regex('menu')& filters.group) #start
 def start(bot, message):
     text = START_MESSAGE
     reply_markup = InlineKeyboardMarkup(START_BUTTONS)
@@ -970,69 +970,8 @@ def start(bot, message):
         reply_markup=reply_markup,
         disable_web_page_preview=True
     )
-@bot.on_message(filters.regex('start')) #start
-def start(bot, message):
-    text = START_MESSAGE
-    reply_markup = InlineKeyboardMarkup(START_BUTTONS)
-    message.reply(
-        text=text,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True
-    )
-WAIT_MSG = """"<b>Processing ...</b>"""
-ADMINS=f"1256202333"
-@bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
-async def get_users(client: bot, message: Message):
-    msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
-    users = await full_userbase()
-    await msg.edit(f"{len(users)} users are using this bot")
 
-@bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
-async def send_text(client: bot, message: Message):
-    if message.reply_to_message:
-        query = await query_msg()
-        broadcast_msg = message.reply_to_message
-        total = 0
-        successful = 0
-        blocked = 0
-        deleted = 0
-        unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
-        for row in query:
-            chat_id = int(row[0])
-            try:
-                await broadcast_msg.copy(chat_id)
-                successful += 1
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-                await broadcast_msg.copy(chat_id)
-                successful += 1
-            except UserIsBlocked:
-                blocked += 1
-            except InputUserDeactivated:
-                deleted += 1
-            except:
-                unsuccessful += 1
-                pass
-            total += 1
-        
-        status = f"""<b><u>Broadcast Completed</u>
-
-Total Users: <code>{total}</code>
-Successful: <code>{successful}</code>
-Blocked Users: <code>{blocked}</code>
-Deleted Accounts: <code>{deleted}</code>
-Unsuccessful: <code>{unsuccessful}</code></b>"""
-        
-        return await pls_wait.edit(status)
-
-    else:
-        msg = await message.reply(REPLY_ERROR)
-        await asyncio.sleep(8)
-        await msg.delete()
-            
-REPLY_ERROR = "error"                
 
 
 
